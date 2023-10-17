@@ -1,6 +1,6 @@
 # godor-jwt
 
-JWT helpers and middleware for godor (got the door :wink:)
+JWT helpers and middleware(go fiber) for godor (got the door :wink:)
 
 ## Installation
 
@@ -10,7 +10,7 @@ go get -u github.com/arcvats/godor-jwt
 
 ## Usage
 
-godor-jwt provides helpers and middleware for Encoding and Decoding a JWT token with HMAC methods
+godor-jwt provides helpers and middleware(fiber) for Encoding and Decoding a JWT token with HMAC methods
 
 ### Config Struct
 
@@ -64,7 +64,7 @@ func main() {
 }
 ```
 
-### JWT middleware
+### JWT middleware(for go fiber)
 
 ```go
 package main
@@ -75,9 +75,11 @@ import (
 
 func main() {
 	app := fiber.New()
-	config := godorjwt.Config{
-		Secret: "secret",
-    }
+	config := godorjwt.New("secret")
+	// or
+	//config := godorjwt.Config{
+	//	Secret: "secret",
+	//}
 	app.Use(config.Decoder())
 	/* 
 	    Token is acquired from the Authorization header or jwt Cookie

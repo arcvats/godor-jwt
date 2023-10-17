@@ -13,18 +13,22 @@ import (
 const algorithm = "HS256"
 const expiry = 60
 
+// Config struct
 type Config struct {
 	Algorithm string
 	Secret    string
 	Expiry    int64
 }
 
+// New creates a new config instance with Secret
 func New(secret string) *Config {
 	return &Config{
 		Secret: secret,
 	}
 }
 
+// Encode creates a new JWT token with given payload (map[string]any) and config (Config)
+// returns the token (string), jti (string), expiry (int64) and error
 func Encode(payload map[string]any, config Config) (string, string, int64, error) {
 	ex := config.Expiry
 	algo := config.Algorithm
@@ -54,6 +58,8 @@ func Encode(payload map[string]any, config Config) (string, string, int64, error
 	return signedToken, jti, exp, nil
 }
 
+// Decode decodes a JWT token with given token(string) and config(Config)
+// returns the payload (map[string]any) and error
 func Decode(tokenString string, config Config) (map[string]any, error) {
 	if config.Secret == "" {
 		return nil, errors.New("secret is required")
@@ -76,6 +82,9 @@ func Decode(tokenString string, config Config) (map[string]any, error) {
 	return nil, errors.New("invalid token")
 }
 
+// Decoder is a middleware that decodes a JWT token from Authorization header or cookie
+// and sets the decoded token in locals
+// returns a fiber.Handler
 func (config *Config) Decoder() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		token := ""
@@ -95,6 +104,7 @@ func (config *Config) Decoder() fiber.Handler {
 	}
 }
 
+// randomHex generates a random hex string with given length
 func randomHex(n int) (string, error) {
 	bytes := make([]byte, n)
 
