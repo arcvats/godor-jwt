@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/gofiber/fiber/v2 v2.49.2
 	github.com/golang-jwt/jwt/v5 v5.0.0
+	go.uber.org/goleak v1.2.1
 )
 
 require (
@@ -18,6 +19,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.50.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	go.uber.org/goleak v1.2.1 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 )

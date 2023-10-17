@@ -65,17 +65,6 @@ func TestDecodeWithInvalidToken(t *testing.T) {
 	}
 }
 
-//
-//func TestDecodeWithInvalidSigningMethod(t *testing.T) {
-//	config := New("secret")
-//	payload := map[string]any{"name": "John Doe"}
-//	token, _, _, _ := Encode(payload, *config)
-//	_, err := Decode(token, *config)
-//	if err == nil {
-//		t.Errorf("Expected error to be not nil, got %s", err)
-//	}
-//}
-
 func TestDecodeWithEmptyToken(t *testing.T) {
 	config := New("secret")
 	_, err := Decode("", *config)
@@ -90,36 +79,3 @@ func TestDecodeWithEmptyConfig(t *testing.T) {
 		t.Errorf("Expected error to be not nil, got %s", err)
 	}
 }
-
-//func TestConfig_Decoder(t *testing.T) {
-//	config := New("secret")
-//	decoder := config.Decoder()
-//	if decoder == nil {
-//		t.Errorf("Expected decoder to be not nil, got %s", decoder)
-//	}
-//}
-//
-//func TestConfig_DecoderWithEmptySecret(t *testing.T) {
-//	config := New("")
-//	decoder := config.Decoder()
-//	if decoder != nil {
-//		t.Errorf("Expected decoder to be nil, got %s", decoder)
-//	}
-//}
-//
-//func TestConfig_DecoderWithEmptyConfig(t *testing.T) {
-//	config := Config{}
-//	decoder := config.Decoder()
-//	if decoder != nil {
-//		t.Errorf("Expected decoder to be nil, got %s", decoder)
-//	}
-//}
-//
-//func TestConfig_DecoderWithInvalidSigningMethod(t *testing.T) {
-//	config := New("secret")
-//	config.Algorithm = "invalid"
-//	decoder := config.Decoder()
-//	if decoder != nil {
-//		t.Errorf("Expected decoder to be nil, got %s", decoder)
-//	}
-//}
